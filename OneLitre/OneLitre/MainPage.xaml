@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:oneLitre="clr-namespace:OneLitre;assembly=OneLitre"
+             x:Class="OneLitre.MainPage" BackgroundColor="DarkCyan">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <oneLitre:CalculateViewModel x:Key="viewModel"/>
+
+            <Style TargetType="Slider">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+  <StackLayout BindingContext="{StaticResource viewModel}" HorizontalOptions="FillAndExpand" Orientation="Vertical" VerticalOptions="StartAndExpand">
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="DarkCyan" VerticalOptions="FillAndExpand" HeightRequest="120">
+            <Label Padding ="10,10,30,10" Text="Цена за 1 кг/литр" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Default"/>
+            <Label TextColor="Black" Text="{Binding Cost, StringFormat='{00:F2}р'}" FontSize="Title" Padding="30,15,30,10" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Padding="20,15,20,10" BackgroundColor="DarkCyan">
+            <Label Text="Вес гр." HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Default"/>
+            <Entry Text="{Binding Source={x:Reference sliderWeight}, Path=Value}" FontSize="Default" HorizontalOptions="EndAndExpand" Keyboard="Numeric" WidthRequest="100"/>
+        </StackLayout>
+
+      <StackLayout Padding="50,20,20,10" BackgroundColor="DarkCyan" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+          <Slider x:Name="sliderWeight" Minimum ="0" Maximum="2000" Value="{Binding Weight}" BackgroundColor="DarkCyan" ThumbColor="AliceBlue" MinimumTrackColor="Black"> </Slider>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Padding="30,20,10,10" >
+            <Label Text="Цена за единицу" HorizontalTextAlignment="Center"  FontSize="Default" VerticalTextAlignment="Center"/>
+            <Entry Placeholder="Цена за единицу" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Text="{Binding Price}" FontSize="Default"  HorizontalOptions="EndAndExpand" WidthRequest="100" Keyboard="Numeric"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
