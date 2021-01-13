@@ -49,7 +49,7 @@ namespace OneLitre
 
         private decimal CalculateTotal()
         {
-            return (Price > 0 ? (1000 / Price) * Weight : 0) / 100;
+            return Price > 0 ? 1000 * Price / Weight : 0;
         }
     }
 }
